@@ -14,11 +14,13 @@ You should only need to provide the Stream Name and the required resolution in o
 
 ### Notes and Wishlist
 
-*   At this time, there is no system to automatically provide the backup stream that YouTube has support for. However, if you wish to provide a backup stream, it should be possible to run a second instance of and alter the stream URL from the default value to the backup URL.
+*   At this time, there is no system to automatically provide the backup stream that YouTube has support for. However, if you wish to provide a backup stream, it should be possible to run a second instance of and alter the stream URL from the default value to the backup URL. **[#4](https://github.com/calmcl1/RTMPTube/issues/4)**
 
-*   There is currently no support for the creation of new live events purely through the Google APIs, but this is planned.
+*   There is currently no support for the creation of new live events purely through the Google APIs, but this is planned. **[#3](https://github.com/calmcl1/RTMPTube/issues/3)**
 
-*   There is currently no support for automatically detected the resolution of a stream through the Google APIs when a stream name has been provided, but this is planned.
+*   There is currently no support for automatically detecting the resolution of a stream through the Google APIs when a stream name has been provided, but this is planned. **[#2](https://github.com/calmcl1/RTMPTube/issues/2)**
+
+* There is currently no support for toggling the PAL colour expansion, which is enabled by default, but this is planned. **[#1]((https://github.com/calmcl1/RTMPTube/issues/1)**
 
 ### Contact
 
