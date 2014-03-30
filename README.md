@@ -22,4 +22,4 @@ You should only need to provide the Stream Name and the required resolution in o
 
 ### Contact
 
-If there are any issues with the software or there's anything that you'd particularly like me to look into, do please get in touch at calmcl1@aol.com.
+If there are any issues with the software or there's anything that you'd particularly like me to look into, do please file a request at https://github.com/calmcl1/RTMPTube/issues
