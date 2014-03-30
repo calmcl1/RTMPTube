@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>RTMPTube by calmcl1</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">RTMPTube</h1>
+        <p class="header">Command-line software to set up a RTMP stream to YouTube using FFMPEG with the recommended YT live stream parameters.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/calmcl1/RTMPTube/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/calmcl1/RTMPTube/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/calmcl1/RTMPTube">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/calmcl1">calmcl1</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="rtmptube" class="anchor" href="#rtmptube"><span class="octicon octicon-link"></span></a>RTMPTube</h1>
+
+<p>RTMPTube is a tool to create live stream events on YouTube by managing the RTMP stream that YouTube requires, using FFMPEG as a streaming backend.</p>
+
+<p>The current implementation uses <code>dvgrab</code> as a method of capturing video from hardware inputs, but this can readily be changed.</p>
+
+<p>Installation is trivial - a build of FFMPEG is included, but if you have your own build, or want to use a repo build, the path to the FFMPEG build can easily be changed in the <code>STREAM.py</code> file. However, you must ensure that it is compiled with support for libx264, as YouTube expects FLV-wrapped h264 video. If in doubt, use the provided build.</p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>Open <code>STREAM.py</code> file to begin the stream configuration wizard. All of the required values must match the ones on the YouTube Live Event Management page, on the Encoder tab.</p>
+
+<p>You should only need to provide the Stream Name and the required resolution in order to start the stream - the stream URL should be acceptable at the default value.</p>
+
+<h3>
+<a name="notes-and-wishlist" class="anchor" href="#notes-and-wishlist"><span class="octicon octicon-link"></span></a>Notes and Wishlist</h3>
+
+<ul>
+<li><p>At this time, there is no system to automatically provide the backup stream that YouTube has support for. However, if you wish to provide a backup stream, it should be possible to run a second instance of and alter the stream URL from the default value to the backup URL. <strong><a href="https://github.com/calmcl1/RTMPTube/issues/4">#4</a></strong></p></li>
+<li><p>There is currently no support for the creation of new live events purely through the Google APIs, but this is planned. <strong><a href="https://github.com/calmcl1/RTMPTube/issues/3">#3</a></strong></p></li>
+<li><p>There is currently no support for automatically detecting the resolution of a stream through the Google APIs when a stream name has been provided, but this is planned. <strong><a href="https://github.com/calmcl1/RTMPTube/issues/2">#2</a></strong></p></li>
+<li><p>There is currently no support for toggling the PAL colour expansion, which is enabled by default, but this is planned. <strong><a href="https://github.com/calmcl1/RTMPTube/issues/1">#1</a></strong></p></li>
+</ul><h3>
+<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h3>
+
+<p>If there are any issues with the software or there's anything that you'd particularly like me to look into, do please file a request at <a href="https://github.com/calmcl1/RTMPTube/issues">https://github.com/calmcl1/RTMPTube/issues</a></p>
+
+<p>Created by Callum McLean (<a href="https://github.com/calmcl1" class="user-mention">@calmcl1</a>)</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
