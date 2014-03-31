@@ -20,8 +20,6 @@ You should only need to provide the Stream Name and the required resolution in o
 
 *   There is currently no support for automatically detecting the resolution of a stream through the Google APIs when a stream name has been provided, but this is planned. **[#2](https://github.com/calmcl1/RTMPTube/issues/2)**
 
-* There is currently no support for toggling the PAL colour expansion, which is enabled by default, but this is planned. **[#1](https://github.com/calmcl1/RTMPTube/issues/1)**
-
 ### Contact
 
 If there are any issues with the software or there's anything that you'd particularly like me to look into, do please file a request at https://github.com/calmcl1/RTMPTube/issues

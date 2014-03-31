@@ -4,7 +4,8 @@
 # Author: Callum McLean
 # Version: 1.02
 # Changelog:
-#   1.02: Added general configuration abilities for most options
+#   1.02:   Added general configuration abilities for most options
+#           Fixed issue #1 (https://github.com/calmcl1/RTMPTube/issues/1)
 #	1.01: Added default fullscreen, opening instructions
 #	1.01: Initial version
 
