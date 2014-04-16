@@ -1,7 +1,18 @@
+"""
+Test suite for the stream operations.
+"""
 __author__ = 'Callum'
 
 import unittest
 
-class testCreateNewStream(unittest.TestCase):
-    def testCreateStream(self):
+
+class TestCreateNewStream(unittest.TestCase):
+    """
+    Test suite for all matters stream-creation-related.
+    """
+
+    def test_create_stream(self):
+        """
+        Create the stream.
+        """
         pass

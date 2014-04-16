@@ -9,10 +9,16 @@
 #	1.01: Added default fullscreen, opening instructions
 #	1.01: Initial version
 
+"""
+Set the stream parameters below. This will then call dvgrab and ffmpeg
+with these parameters and start streaming to the provided YouTube server via
+RTMP.
+"""
+
 import subprocess
 
 # General config
-options = {
+OPTIONS = {
     "ffmpeg_path": "/home/ubuntu/Desktop/ffmpeg",
     "audio_bitrate": 192,  # in kbps
     "video_codec": "libx264",  # this must match the FFMPEG codec name
@@ -21,7 +27,8 @@ options = {
     "stream_format": "flv",  # this must match the FFMPEG format name
     "gop_length": 15,  # length of GOP; one keyframe per xx frames
     "fps": 30,
-    "pal_expansion": True,  # whether or not 16-235 PAL luminance values should be expanded to 0-255
+    "pal_expansion": True,  # whether or not 16-235 PAL luminance values\
+    # should be expanded to 0-255
     "video_offset": 0.15  # video offset time in seconds (for A/V sync)
 }
 
@@ -30,7 +37,7 @@ options = {
 ###########################################################################
 
 # Video resolution presets
-resolution_presets = {
+RESOLUTION_PRESETS = {
     "1080p": {
         "res_h": "1920",
         "res_v": "1080",
@@ -78,7 +85,8 @@ while not stream_name:
     if not stream_name: print "Sorry, try again."
 
 # Request the stream base URL
-stream_url = raw_input("Primary Server URL [default: rtmp://a.rtmp.youtube.com/live2]: ")
+stream_url = raw_input("Primary Server URL\
+[default: rtmp://a.rtmp.youtube.com/live2]: ")
 if not stream_url: stream_url = "rtmp://a.rtmp.youtube.com/live2"
 
 
@@ -99,15 +107,15 @@ while not res_input in ["1", "2", "3", "4", "5"]:
         "Sorry, try again."
 
 if res_input == "1":
-    resolution = resolution_presets["1080p"]
+    resolution = RESOLUTION_PRESETS["1080p"]
 elif res_input == "2":
-    resolution = resolution_presets["720p"]
+    resolution = RESOLUTION_PRESETS["720p"]
 elif res_input == "3":
-    resolution = resolution_presets["480p"]
+    resolution = RESOLUTION_PRESETS["480p"]
 elif res_input == "4":
-    resolution = resolution_presets["360p"]
+    resolution = RESOLUTION_PRESETS["360p"]
 elif res_input == "5":
-    resolution = resolution_presets["240p"]
+    resolution = RESOLUTION_PRESETS["240p"]
 
 # Display the final stream settings
 
@@ -128,48 +136,38 @@ Broadcast parameters:
 """ % {"res_h": resolution["res_h"],
        "res_v": resolution["res_v"],
        "video_bitrate": resolution["bitrate"] + "kbps",
-       "audio_bitrate": options["audio_bitrate"] + "kbps",
-       "video_codec": options["video_codec"],
-       "audio_codec": options["audio_codec"],
-       "stream_format": options["stream_format"],
-       "gop_length": options["gop_length"],
-       "fps": options["fps"],
-       "pal_expansion": options["pal_expansion"],
+       "audio_bitrate": OPTIONS["audio_bitrate"] + "kbps",
+       "video_codec": OPTIONS["video_codec"],
+       "audio_codec": OPTIONS["audio_codec"],
+       "stream_format": OPTIONS["stream_format"],
+       "gop_length": OPTIONS["gop_length"],
+       "fps": OPTIONS["fps"],
+       "pal_expansion": OPTIONS["pal_expansion"],
        "stream_url": stream_url, "stream_name": stream_name}
 
 # Approve the stream settings
 raw_input("Press Enter to accept the settings and begin the stream.")
 
 # Build the command
-# command = "dvgrab - | " + options["ffmpeg_path"] + " -itsoffset:0 0.15 -i - -s "\
-#           + resolution["res_h"] + "x" + resolution["res_v"]\
-#           + " -b:v " + resolution["bitrate"] + "k -r " + options["fps"]\
-#           + " -ar 44100 -ab " + options["audio_bitrate"] + "k -f " + options["stream_format"]\
-#           + "-c:v libx264 -aspect 16:9 "
-# if options["pal_expansion"]: command += '-vf lutyuv="y=(val-16)*(255/219)" '
-# command += "-c:a " + options["audio_codec"]\
-#            + "-strict experimental -g " + options["gop_length"]
-# command += stream_url + "/" + stream_name
-
-# Build the command
 cmd = "dvgrab - | %(ffmpeg_path)s -itsoffset:0 %s(offset) -i - -s %(res_h)sx%(res_v) " \
       "-b:v %(video_bitrate)sk -r %(fps)s -ar %(sample_rate)s -ab %(audio_bitrate)sk " \
-      "-f %(stream_format)s -c:v %(video_codec)s -aspect 16:9 " \
-      % {"ffmpeg_path": options["ffmpeg_path"],
-         "offset": options["video_offset"],
-         "res_h": resolution["res_h"], "res_v": resolution["res_v"],
+      "-f %(stream_format)s -c:v %(video_codec)s -aspect 16:9 "
+      % {"ffmpeg_path": OPTIONS["ffmpeg_path"],
+         "offset": OPTIONS["video_offset"],
+         "res_h": resolution["res_h"],
+         "res_v": resolution["res_v"],
          "video_bitrate": resolution["bitrate"],
-         "fps": options["fps"],
-         "sample_rate": options["audio_sample_rate"],
-         "audio_bitrate": options["audio_bitrate"],
-         "stream_format": options["stream_format"],
-         "video_codec": options["video_codec"]}
+         "fps": OPTIONS["fps"],
+         "sample_rate": OPTIONS["audio_sample_rate"],
+         "audio_bitrate": OPTIONS["audio_bitrate"],
+         "stream_format": OPTIONS["stream_format"],
+         "video_codec": OPTIONS["video_codec"]}
 
-if options["pal_expansion"]: cmd += '-vf lutyuv="y=(val-16)*(255/219)" '
+if OPTIONS["pal_expansion"]: cmd += '-vf lutyuv="y=(val-16)*(255/219)" '
 
 cmd += "-c:a %(audio_codec)s -strict experimental -g %(gop_length)s" \
-       % {"audio_codec": options["audio_codec"],
-          "gop_length": options["gop_length"]}
+       % {"audio_codec": OPTIONS["audio_codec"],
+          "gop_length": OPTIONS["gop_length"]}
 
 cmd += stream_url + "/" + stream_name
 
